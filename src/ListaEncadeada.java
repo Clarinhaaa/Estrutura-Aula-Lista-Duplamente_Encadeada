@@ -29,7 +29,7 @@ public class ListaEncadeada<T> {
         this.totalElementos++;
     }
 
-    public void adicionarPosicao(T elemento, int posicao) {
+    public void adicionarPorPosicao(T elemento, int posicao) {
         if (posicao == 0) {
             this.adicionarInicio(elemento);
             return;
@@ -47,7 +47,39 @@ public class ListaEncadeada<T> {
         this.totalElementos++;
     }
 
-    //TODO: remover por posição, remover do início e remover do final
+    public void removerInicio() {
+        Celula<T> aux = this.primeira.getProxima();
+        aux.setAnterior(null);
+        this.primeira = aux;
+
+        this.totalElementos--;
+    }
+
+    public void removerFinal() {
+        Celula<T> aux = this.ultima.getAnterior();
+        aux.setProxima(null);
+        this.ultima = aux;
+
+        this.totalElementos--;
+    }
+
+    public void removerPorPosicao(int posicao) {
+        if (posicao == 0) {
+            this.removerInicio();
+            return;
+        }
+        if (posicao == this.totalElementos - 1) {
+            this.removerFinal();
+            return;
+        }
+        
+        Celula<T> aux = this.pesquisarCelula(posicao);
+        aux.getAnterior().setProxima(aux.getProxima());
+        aux.getProxima().setAnterior(aux.getAnterior());
+        aux = null;
+
+        this.totalElementos--;
+    }
 
     public Celula<T> pesquisarCelula(int posicao) {
         if (posicao <= (this.totalElementos - 1) / 2) {

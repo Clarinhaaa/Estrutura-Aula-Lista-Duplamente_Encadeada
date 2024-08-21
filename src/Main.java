@@ -7,7 +7,12 @@ public class Main {
         lista.adicionarInicio(3);
         lista.adicionarFinal(4);
 
-        lista.adicionarPosicao(5, 2);
+        lista.adicionarPorPosicao(5, 2);
+
+        lista.imprimir();
+        System.out.println("Total de elementos da lista: " + lista.tamanho());
+
+        lista.removerPorPosicao(1);
 
         lista.imprimir();
         System.out.println("Total de elementos da lista: " + lista.tamanho());
